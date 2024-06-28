@@ -103,7 +103,7 @@ body {
     height: 92%; /* Set container height to 92% */
     padding: 20px;
     box-sizing: border-box;
-    overflow: hidden; /* Prevent scrollbars */
+    overflow: auto; /* Enable overflow scrolling */
 }
 
 .verse {
