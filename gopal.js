@@ -1,15 +1,19 @@
-let currentPrayer = "गोपाल सहस्त्रनाम";
+let currentPrayer = "";
 let currentIndex = 0;
 let baseFontSize = 5; // 5vh default font size
 
 function displayVerse(prayer, index) {
     const verseElement = document.getElementById("verse");
-    verseElement.innerHTML = verses[prayer][index];
-    adjustFontSize();
+    if (prayer) {
+        verseElement.innerHTML = verses[prayer][index];
+        adjustFontSize();
+    } else {
+        verseElement.innerHTML = ""; // Clear the content if no prayer is selected
+    }
 }
 
 function showNextVerse() {
-    if (currentIndex < verses[currentPrayer].length - 1) {
+    if (currentPrayer && currentIndex < verses[currentPrayer].length - 1) {
         currentIndex++;
     } else {
         currentIndex = 0; // Loop back to the first verse
@@ -18,7 +22,7 @@ function showNextVerse() {
 }
 
 function showPreviousVerse() {
-    if (currentIndex > 0) {
+    if (currentPrayer && currentIndex > 0) {
         currentIndex--;
     } else {
         currentIndex = verses[currentPrayer].length - 1; // Loop back to the last verse
