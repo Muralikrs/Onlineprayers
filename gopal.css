@@ -1,139 +1,109 @@
-/* Base styles */
-body {
-    font-family: 'Noto Sans Devanagari', sans-serif;
-    font-size: 1rem; /* Base font size */
-    margin: 0;
-    padding: 0;
-    overflow: hidden; /* Prevent scrollbars */
-    display: flex;
-    flex-direction: column;
-    height: 100vh;
-    background-color: #F1D2A3;
+let currentPrayer = "गोपाल सहस्त्रनाम";
+let currentIndex = 0;
+let baseFontSize = 5; // Initial base font size
+
+function displayVerse(prayer, index) {
+    const verseElement = document.getElementById("verse");
+    verseElement.innerHTML = verses[prayer][index];
+    adjustFontSize();
 }
 
-/* Header styles */
-.header {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    width: 100%;
-    height: 8%; /* Set header height to 8% */
-    padding: 10px;
-    background-color: #D39758;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    margin: 0; /* Ensure no gap */
+function showNextVerse() {
+    if (currentIndex < verses[currentPrayer].length - 1) {
+        currentIndex++;
+    } else {
+        currentIndex = 0; // Loop back to the first verse
+    }
+    displayVerse(currentPrayer, currentIndex);
 }
 
-#prayerHeading {
-    font-size: calc(8vh - 20px); /* Dynamically adjust font size based on container height */
-    font-weight: bold;
-    color: #333;
-    flex-grow: 1;
-    text-align: center;
+function showPreviousVerse() {
+    if (currentIndex > 0) {
+        currentIndex--;
+    } else {
+        currentIndex = verses[currentPrayer].length - 1; // Loop back to the last verse
+    }
+    displayVerse(currentPrayer, currentIndex);
 }
 
-.font-buttons {
-    display: flex;
-    gap: 10px;
+function toggleDropdown() {
+    const dropdown = document.getElementById("optionDropdown");
+    dropdown.classList.toggle("active");
+    const headerText = document.getElementById("prayerHeading");
+    headerText.classList.toggle("active");
 }
 
-.font-buttons button {
-    font-size: 1rem;
-    padding: 5px 10px;
-    cursor: pointer;
-    border-color:transparent;
-    background: transparent;
-    color: #f35b41;
-    border-radius: 4px;
+function displayPrayer(prayerName) {
+    currentPrayer = prayerName;
+    currentIndex = 0;
+    displayVerse(currentPrayer, currentIndex);
+
+    // Close dropdown after selection
+    const dropdown = document.getElementById("optionDropdown");
+    dropdown.classList.remove("active");
+
+    const headerText = document.getElementById("prayerHeading");
+    headerText.textContent = prayerName; // Update heading text
+    headerText.classList.remove("active"); // Remove active class for header text color change
 }
 
-.font-buttons button:hover {
-    background: transparent;
-    color:  rgb(255, 255, 255);
+function populateDropdown() {
+    const dropdown = document.getElementById("optionDropdown");
+    dropdown.innerHTML = ''; // Clear existing items
+
+    for (let prayer in verses) {
+        const dropdownItem = document.createElement('div');
+        dropdownItem.className = 'dropdown-item';
+        dropdownItem.textContent = prayer;
+        dropdownItem.onclick = () => displayPrayer(prayer);
+        dropdown.appendChild(dropdownItem);
+    }
 }
 
-.option-button {
-    background: none;
-    border: none;
-    font-size: 2.5rem;
-    cursor: pointer;
-    margin-right: 2rem; /* Move the option button a bit to the right */
+// Call populateDropdown on page load
+document.addEventListener("DOMContentLoaded", function() {
+    populateDropdown();
+    displayVerse(currentPrayer, currentIndex); // Display the first verse of the initial prayer
+    adjustFontSize(); // Adjust the font size initially
+});
+
+// Event listeners for navigating verses
+document.addEventListener("keydown", function(event) {
+    if (event.key === "ArrowRight") {
+        showNextVerse();
+    } else if (event.key === "ArrowLeft") {
+        showPreviousVerse();
+    }
+});
+
+// Event listener for clicking on the container to navigate on desktop
+document.getElementById("verseContainer").addEventListener("click", function(event) {
+    const containerWidth = this.offsetWidth;
+    const clickX = event.clientX - this.getBoundingClientRect().left;
+
+    if (clickX > containerWidth / 2) {
+        showNextVerse();
+    } else {
+        showPreviousVerse();
+    }
+});
+
+// Adjust font size based on baseFontSize
+function adjustFontSize() {
+    const verseElement = document.getElementById("verse");
+    verseElement.style.fontSize = `${baseFontSize}vh`;
 }
 
-.option-dropdown {
-    display: none;
-    position: absolute;
-    width: 10rem;
-    font-size: larger;
-    right: 10px;
-    top: calc(8% + 10px); /* Adjust position based on new header height */
-    background: #F1D2A3;
-    border: 1px solid #ccc;
-    box-shadow: 0 0 10px #f35b41;
-    z-index: 1000;
-    padding: 5px;
+// Volume up font size
+function volumeUpFontSize() {
+    baseFontSize += 1; // Increase font size
+    adjustFontSize();
 }
 
-.option-dropdown.active {
-    display: block;
-}
-
-.option-dropdown .dropdown-item {
-    display: block;
-    width: 100%;
-    padding: 10px;
-    border: none;
-    background: none;
-    text-align: center;
-    cursor: pointer;
-    font-size: 1.5rem;
-}
-
-.option-dropdown .dropdown-item:hover {
-    background:#F1D2A3;
-}
-
-/* Container styles */
-.container {
-    flex: 1;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 100%;
-    height: 92%; /* Set container height to 92% */
-    padding: 20px;
-    box-sizing: border-box;
-    overflow: auto; /* Enable overflow scrolling */
-}
-
-.verse {
-    font-size: 60vh; /* Font size based on 60% of viewport height */
-    text-align: center;
-    max-width: 800px;
-    background-color: #F1D2A3;
-    padding: 20px;
-    box-shadow: none;
-    
-}
-
-.dropdown-item {
-    padding: 10px;
-    cursor: pointer;
-    font-size: 2rem;
-    background: #D39758;
-    border: #f35b41;
-}
-
-.dropdown-item:hover {
-    background: #D39758;
-    border: #f35b41;
-}
-
-/* Extra styles for visual feedback */
-#prayerHeading.active {
-    color: #D39758;
-}
-
-.option-dropdown.active .dropdown-item {
-    font-weight: bold;
+// Volume down font size
+function volumeDownFontSize() {
+    if (baseFontSize > 1) { // Ensure font size doesn't go below 1vh
+        baseFontSize -= 1; // Decrease font size
+        adjustFontSize();
+    }
 }
