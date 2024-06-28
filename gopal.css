@@ -55,16 +55,16 @@ body {
 .option-button {
     background: none;
     border: none;
-    font-size: 2.5rem;
+    font-size: 1.5rem;
     cursor: pointer;
-    margin-right: 10px; 
+    margin-right: 10px; /* Move the option button a bit to the right */
 }
 
 .option-dropdown {
     display: none;
     position: absolute;
     right: 10px;
-    top: calc(8% + 10px); 
+    top: calc(8% + 10px); /* Adjust position based on new header height */
     background: #D39758;
     border: 1px solid #f35b41;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
@@ -88,7 +88,7 @@ body {
 }
 
 .option-dropdown .dropdown-item:hover {
-    background: #F1D2A3f0;
+    background: #f0f0f0;
 }
 
 /* Container styles */
@@ -119,12 +119,24 @@ body {
         height: 10%;
     }
     #prayerHeading {
-        font-size: calc(10vh - 20px);
+        font-size: 5vw; /* Use viewport width for better responsiveness */
     }
     .font-buttons button {
         font-size: 2rem;
     }
     .verse {
-        font-size: 40vh; /* Adjust font size for smaller screens */
+        font-size: 8vw; /* Use viewport width for better responsiveness */
+    }
+}
+
+@media (orientation: landscape) {
+    .header {
+        height: 12%;
+    }
+    #prayerHeading {
+        font-size: 4vw; /* Use viewport width for better responsiveness */
+    }
+    .verse {
+        font-size: 6vw; /* Use viewport width for better responsiveness */
     }
 }
