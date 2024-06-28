@@ -17,7 +17,7 @@ body {
     align-items: center;
     justify-content: space-between;
     width: 100%;
-    height: 15%; /* Set header height to 15% */
+    height: 8%; /* Set header height to 8% */
     padding: 10px;
     background-color: #D39758;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
@@ -25,7 +25,7 @@ body {
 }
 
 #prayerHeading {
-    font-size: calc(15% - 10px); /* Dynamically adjust font size based on container height */
+    font-size: calc(8vh - 20px); /* Dynamically adjust font size based on container height */
     font-weight: bold;
     color: #333;
     flex-grow: 1;
@@ -34,39 +34,42 @@ body {
 
 .font-buttons {
     display: flex;
-    gap: 5px;
+    gap: 10px;
 }
 
 .font-buttons button {
-    font-size: 1rem;
+    font-size: 3rem;
     padding: 5px 10px;
     cursor: pointer;
-    border: none;
-    background: #007BFF;
-    color: white;
+    border-color:transparent;
+    background: transparent;
+    color: #f35b41;
     border-radius: 4px;
 }
 
 .font-buttons button:hover {
-    background: #0056b3;
+    background: #f35b41;
+    color:  rgb(255, 255, 255);
 }
 
 .option-button {
     background: none;
     border: none;
-    font-size: 1.5rem;
+    font-size: 2.5rem;
     cursor: pointer;
-    margin-right: 10px; /* Move the option button a bit to the right */
+    margin-right: 2rem; /* Move the option button a bit to the right */
 }
 
 .option-dropdown {
     display: none;
     position: absolute;
+    width: 10rem;
+    font-size: larger;
     right: 10px;
-    top: calc(15% + 10px);
-    background: white;
+    top: calc(8% + 10px); /* Adjust position based on new header height */
+    background: #F1D2A3;
     border: 1px solid #ccc;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 0 10px #f35b41;
     z-index: 1000;
     padding: 5px;
 }
@@ -81,13 +84,13 @@ body {
     padding: 10px;
     border: none;
     background: none;
-    text-align: left;
+    text-align: center;
     cursor: pointer;
-    font-size: 1rem;
+    font-size: 1.5rem;
 }
 
 .option-dropdown .dropdown-item:hover {
-    background: #f0f0f0;
+    background:#F1D2A3;
 }
 
 /* Container styles */
@@ -97,35 +100,38 @@ body {
     align-items: center;
     justify-content: center;
     width: 100%;
-    height: 85%; /* Set container height to 85% */
+    height: 92%; /* Set container height to 92% */
     padding: 20px;
     box-sizing: border-box;
     overflow: hidden; /* Prevent scrollbars */
 }
 
 .verse {
-    font-size: calc(60vh * 0.85); /* Font size based on 60% of viewport height, adjusted for 85% container height */
+    font-size: 60vh; /* Font size based on 60% of viewport height */
     text-align: center;
     max-width: 800px;
-    background-color: #fff;
+    background-color: #F1D2A3;
     padding: 20px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    border-radius: 8px;
+    box-shadow: none;
+    
 }
 
 .dropdown-item {
     padding: 10px;
     cursor: pointer;
-    font-size: 1rem;
+    font-size: 2rem;
+    background: #D39758;
+    border: #f35b41;
 }
 
 .dropdown-item:hover {
-    background: #f0f0f0;
+    background: #D39758;
+    border: #f35b41;
 }
 
 /* Extra styles for visual feedback */
 #prayerHeading.active {
-    color: #007BFF;
+    color: #D39758;
 }
 
 .option-dropdown.active .dropdown-item {
