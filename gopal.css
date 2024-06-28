@@ -113,22 +113,6 @@ body {
     box-shadow: none;
 }
 
-/* Media queries for mobile devices */
-@media (max-width: 600px) {
-    .header {
-        height: 10%;
-    }
-    #prayerHeading {
-        font-size: 5vw; /* Use viewport width for better responsiveness */
-    }
-    .font-buttons button {
-        font-size: 2rem;
-    }
-    .verse {
-        font-size: 8vw; /* Use viewport width for better responsiveness */
-    }
-}
-
 @media (orientation: landscape) {
     .header {
         height: 12%;
@@ -138,5 +122,14 @@ body {
     }
     .verse {
         font-size: 6vw; /* Use viewport width for better responsiveness */
+    }
+}
+
+@media (orientation: portrait) {
+    #prayerHeading {
+        font-size: 5vh; /* Use viewport height for better responsiveness */
+    }
+    .verse {
+        font-size: 2vh; /* Adjust font size for portrait mode */
     }
 }
