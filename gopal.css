@@ -51,6 +51,17 @@ body {
     background: #f35b41;
     color:  rgb(255, 255, 255);
 }
+@media (max-width: 600px) {
+    .header {
+        height: 10%;
+    }
+    #prayerHeading {
+        font-size: calc(10vh - 20px);
+    }
+    .font-buttons button {
+        font-size: 2rem;
+    }
+}
 
 .option-button {
     background: none;
