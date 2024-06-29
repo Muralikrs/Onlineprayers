@@ -39,8 +39,8 @@ body {
     padding: 5px 10px;
     cursor: pointer;
     border: none;
-    background: #f35b41;
-    color: white;
+    background: transparent;
+    color: black;
     border-radius: 4px;
 }
 
@@ -52,6 +52,7 @@ body {
 }
 
 .option-dropdown {
+    margin-top: 20px;
     display: none;
     position: absolute;
     right: 10px;
@@ -149,5 +150,26 @@ body {
 
     .verse {
         font-size: 3.5vh; /* Smaller font size for very small screens */
+    }
+}
+/* Responsive styles for smaller screens */
+@media (max-width: 768px) and (orientation: landscape) {
+    #prayerHeading {
+        font-size: 5vh ; /* Adjusted font size for landscape mobile */
+    }
+
+    .verse {
+        font-size: 4vh; /* Adjusted font size for landscape mobile */
+    }
+    
+}
+
+@media (max-width: 480px) and (orientation: landscape) {
+    #prayerHeading {
+        font-size: calc(3.5vh - 7px); /* Adjusted font size for very small landscape screens */
+    }
+
+    .verse {
+        font-size: 3.5vh; /* Adjusted font size for very small landscape screens */
     }
 }
