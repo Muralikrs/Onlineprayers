@@ -19,7 +19,7 @@ body {
     padding: 10px;
     background-color: #D39758;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-}
+    }
 
 #prayerHeading {
     font-size: calc(5vh - 10px); /* Adjust font size based on container height */
@@ -49,6 +49,7 @@ body {
     border: none;
     font-size: 1.5rem;
     cursor: pointer;
+    margin-right: 2vh;
 }
 
 .option-dropdown {
@@ -60,6 +61,8 @@ body {
     border: 1px solid #f35b41;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     z-index: 1000;
+    margin-right: 1vh;
+
 }
 
 .option-dropdown.active {
@@ -67,11 +70,13 @@ body {
 }
 
 .dropdown-item {
+
     padding: 10px;
     cursor: pointer;
 }
 
 .dropdown-item:hover {
+    margin-right: 2vh;
     background-color: #f35b41;
     color: white;
 }
