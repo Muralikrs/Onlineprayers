@@ -4,14 +4,12 @@ let baseFontSize = 5;
 let currentSegment = "श्रीमद्भागवतम्"; 
 
 
-
-
-
 function displayVerse(prayer, index) {
     const verseElement = document.getElementById("verse");
     if (verses[currentSegment] && verses[currentSegment][prayer]) {
         verseElement.innerHTML = verses[currentSegment][prayer][index];
     } else {
+        verseElement.innerHTML = ""; // Clear if no verse is found
     }
     adjustFontSize();
 }
@@ -37,6 +35,7 @@ function showPreviousVerse() {
 function toggleDropdown() {
     const dropdown = document.getElementById("optionDropdown");
     dropdown.classList.toggle("active");
+    adjustDropdownPosition();
 }
 
 function closeDropdowns() {
@@ -52,7 +51,6 @@ function closeDropdowns() {
     return true; // Return true if no dropdown was open
 }
 
-
 function showSubDropdown(segment) {
     const subDropdown = document.getElementById("subOptionDropdown");
     subDropdown.innerHTML = ''; // Clear existing items
@@ -66,6 +64,7 @@ function showSubDropdown(segment) {
         subDropdown.appendChild(dropdownItem);
     }
     subDropdown.classList.add('active');
+    adjustDropdownPosition(); // Adjust position after showing sub-dropdown
 }
 
 function displayPrayer(prayerName) {
@@ -94,6 +93,23 @@ function populateDropdown() {
         dropdownItem.textContent = segment;
         dropdownItem.onclick = () => showSubDropdown(segment);
         dropdown.appendChild(dropdownItem);
+    }
+}
+
+function adjustDropdownPosition() {
+    const headerRect = document.querySelector('.header').getBoundingClientRect();
+    const dropdown = document.getElementById("optionDropdown");
+    const subDropdown = document.getElementById("subOptionDropdown");
+
+    dropdown.style.top = `${headerRect.bottom}px`;
+    subDropdown.style.top = `${headerRect.bottom}px`;
+
+    // Check if dropdown goes off screen and adjust position
+    const dropdownRect = dropdown.getBoundingClientRect();
+    const viewportHeight = window.innerHeight;
+
+    if (dropdownRect.bottom > viewportHeight) {
+        dropdown.style.top = `${headerRect.top - dropdownRect.height}px`;
     }
 }
 
@@ -136,11 +152,11 @@ function decreaseFontSize() {
 document.getElementById("verseContainer").addEventListener("click", function(event) {
     const containerWidth = this.offsetWidth;
     const clickX = event.clientX - this.getBoundingClientRect().left;
-    if(closeDropdowns())
-    if (clickX > containerWidth / 2) {
-        showNextVerse();
-    } else {
-        showPreviousVerse();
+    if (closeDropdowns()) {
+        if (clickX > containerWidth / 2) {
+            showNextVerse();
+        } else {
+            showPreviousVerse();
+        }
     }
-
 });
