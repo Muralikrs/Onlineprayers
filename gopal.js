@@ -1,8 +1,7 @@
-let currentPrayer = "श्रीब्रह्मसंहिता"; 
+let currentPrayer = "कुन्त्युस्तुति"; 
 let currentIndex = 0;
 let baseFontSize = 5; 
 let currentSegment = "श्रीमद्भागवतम्"; 
-
 
 function displayVerse(prayer, index) {
     const verseElement = document.getElementById("verse");
@@ -17,18 +16,25 @@ function displayVerse(prayer, index) {
 function showNextVerse() {
     if (verses[currentSegment] && verses[currentSegment][currentPrayer] && currentIndex < verses[currentSegment][currentPrayer].length - 1) {
         currentIndex++;
+
     } else {
-        currentIndex = 0; // Loop back to the first verse
+        currentIndex = 0; 
+
     }
+    stopAudio()
     displayVerse(currentPrayer, currentIndex);
 }
 
 function showPreviousVerse() {
     if (verses[currentSegment] && verses[currentSegment][currentPrayer] && currentIndex > 0) {
         currentIndex--;
+
+
     } else {
-        currentIndex = verses[currentSegment][currentPrayer].length - 1; // Loop back to the last verse
+        currentIndex = verses[currentSegment][currentPrayer].length - 1;
+
     }
+    stopAudio()
     displayVerse(currentPrayer, currentIndex);
 }
 
@@ -149,14 +155,103 @@ function decreaseFontSize() {
     }
 }
 
-document.getElementById("verseContainer").addEventListener("click", function(event) {
-    const containerWidth = this.offsetWidth;
-    const clickX = event.clientX - this.getBoundingClientRect().left;
-    if (closeDropdowns()) {
-        if (clickX > containerWidth / 2) {
+
+
+let startX = null;
+let startY = null;
+
+document.getElementById("verseContainer").addEventListener("touchstart", function(event) {
+    startX = event.touches[0].clientX;
+    startY = event.touches[0].clientY;
+});
+
+document.getElementById("verseContainer").addEventListener("touchend", function(event) {
+    if (!startX || !startY) {
+        return;
+    }
+
+    const endX = event.changedTouches[0].clientX;
+    const endY = event.changedTouches[0].clientY;
+
+    const diffX = startX - endX;
+    const diffY = startY - endY;
+
+    // Determine swipe direction based on horizontal and vertical distance
+    if (Math.abs(diffX) > Math.abs(diffY)) {
+        // Horizontal swipe detected
+        if (diffX > 0) {
+            // Swipe left
             showNextVerse();
+
         } else {
+            // Swipe right
             showPreviousVerse();
+
         }
     }
+
+    // Reset start coordinates
+    startX = null;
+    startY = null;
 });
+
+function getAudio() {
+    let audioAddress = `./audio/${currentPrayer}/name.mp4`;
+
+    try {
+        const audioFileExists = true;
+
+   
+        
+        if(currentIndex > 1)
+
+        audioAddress = `./audio/${currentPrayer}/${currentIndex-1}.mp3`;
+
+    } catch (error) {
+    }
+
+    return audioAddress;
+}
+
+document.body.addEventListener('click', function() {
+    
+    if(currentIndex>1)
+    playAudio(getAudio())
+});
+let isAudioPlaying = false;
+let currentAudio = null;
+
+function playAudio(audioAddress) {
+    if (isAudioPlaying && currentAudio) {
+        return; // If an audio is already playing, ignore the new request
+    }
+
+    currentAudio = new Audio(audioAddress);
+    
+    currentAudio.addEventListener('playing', () => {
+        isAudioPlaying = true;
+    });
+
+    currentAudio.addEventListener('ended', () => {
+        isAudioPlaying = false;
+        currentAudio = null;
+    });
+
+    currentAudio.addEventListener('pause', () => {
+        isAudioPlaying = false;
+    });
+
+    currentAudio.play().catch(error => {
+        isAudioPlaying = false;
+        currentAudio = null;
+    });
+}
+function stopAudio() {
+    if (currentAudio) {
+        currentAudio.pause();
+        currentAudio.currentTime = 0; // Reset to the beginning
+        isAudioPlaying = false;
+        currentAudio = null;
+    }
+}
+
