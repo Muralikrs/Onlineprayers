@@ -1,0 +1,59 @@
+body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    width: 100%;
+    font-size: 5vh;
+    background-color: #F2D3A4;
+}
+
+#fonter {
+    display: flex;
+    flex-direction: column;
+}
+
+#fonter button {
+    margin: 0.4vh;
+    background-color: transparent;
+    border: transparent;
+}
+#audio img{
+    width: .1vw;
+    height: .1vh;
+
+}
+.fa-solid{
+    height: 0.6vh ;
+}
+#fonter button:hover {
+    background-color: black;
+    color: white;
+}
+
+#naver {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 8vh;
+    width: 100%;
+    background-color: #D29757;
+    
+}
+
+#cont {
+    background-color: bisque;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center; /* Center the text horizontally */
+    flex-wrap: wrap;
+    padding: 20px; /* Add padding to avoid text touching the edges */
+    box-sizing: border-box; /* Include padding in the element's total width and height */
+}
+
+#body {
+    width: 100%; /* Ensure the content takes the full width of the container */
+    word-wrap: break-word; /* Break long words to fit within the width */
+    white-space: normal; /* Allow text to wrap to the next line */
+}
