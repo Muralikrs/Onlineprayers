@@ -8,6 +8,7 @@ body {
     flex-direction: column;
     height: 100vh;
     background-color: #F1D2A3;
+    overflow: hidden;
 }
 
 /* Header styles */
@@ -22,7 +23,7 @@ body {
 }
 
 #prayerHeading {
-    font-size: calc(5vh - 10px); /* Adjust font size based on container height */
+    font-size: 5vh; /* Adjust font size based on container height */
     font-weight: bold;
     color: #333;
     text-align: center;
@@ -90,7 +91,10 @@ body {
     flex-grow: 1;
     padding: 20px;
     text-align: center;
+    overflow-y: auto; /* Enable vertical scrolling */
+    max-height: calc(100vh - 100px); /* Adjust max-height based on header height */
 }
+
 
 .verse {
     font-size: 5vh;
