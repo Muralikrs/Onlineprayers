@@ -1,4 +1,4 @@
-elet currentPrayer = "कुन्त्युस्तुति"; 
+let currentPrayer = "कुन्त्युस्तुति"; 
 let currentIndex = 0;
 let baseFontSize = 5; 
 let currentSegment = "श्रीमद्भागवतम्"; 
@@ -283,8 +283,3 @@ function updateViewportUnits() {
 // Update dimensions on load
 updateViewportUnits();
 
-// Update dimensions on resize
-window.addEventListener('resize', updateViewportUnits());
-
-// Handling changes in orientation
-window.addEventListener('orientationchange', updateViewportUnits);
