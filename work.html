@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Available Browser Dimensions</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f0f0f0;
+        }
+        .container {
+            text-align: center;
+            background: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Available Browser Dimensions</h1>
+        <p id="dimensions"></p>
+    </div>
+
+    <script>
+        function updateDimensions() {
+            // Using window.innerWidth and window.innerHeight to get the available dimensions
+            const width = window.innerWidth;
+            const height = window.innerHeight;
+
+            // Detect orientation
+            const orientation = (width > height) ? 'Landscape' : 'Portrait';
+
+            // Update the text content with the current available dimensions
+            document.getElementById('dimensions').textContent = 
+                `Orientation: ${orientation}, Width: ${width}px, Height: ${height}px`;
+        }
+
+        // Update dimensions on load
+        updateDimensions();
+
+        // Update dimensions on resize
+        window.addEventListener('resize', updateDimensions);
+
+        // Handling changes in orientation
+        window.addEventListener('orientationchange', updateDimensions);
+    </script>
+</body>
+</html>
