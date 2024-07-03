@@ -16,6 +16,8 @@ body {
     margin: 0.4vh;
     background-color: transparent;
     border: transparent;
+    font-size: 2vh; /* Adjust button font size */
+    padding: 0.5vh 1vh; /* Adjust button padding */
 }
 
 #audio img {
@@ -39,6 +41,11 @@ body {
     height: 8vh;
     width: 100%;
     background-color: #D29757;
+}
+
+#naver h1 {
+    font-size: 4vh; /* Adjust heading font size */
+    margin: 0; /* Remove default margin */
 }
 
 #cont {
