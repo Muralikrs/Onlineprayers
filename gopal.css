@@ -1,8 +1,4 @@
-/* Use CSS variables to set dimensions */
-.container {
-    width: var(--viewport-width);
-    height: var(--viewport-height);
-}/* Base styles */
+/* Base styles */
 body {
     font-family: 'Noto Sans Devanagari', sans-serif;
     font-size: 1rem; /* Base font size */
