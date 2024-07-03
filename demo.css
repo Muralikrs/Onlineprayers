@@ -50,11 +50,11 @@ body {
     text-align: center;
     flex-wrap: wrap;
     padding: 20px;
-    box-sizing: border-box;
+    box-sizing: border-box; /* Include padding in the element's total width and height */
 }
 
 #body {
-    width: 100%;
-    word-wrap: break-word;
-    white-space: normal;
+    width: 100%; /* Ensure the content takes the full width of the container */
+    word-wrap: break-word; /* Break long words to fit within the width */
+    white-space: normal; /* Allow text to wrap to the next line */
 }
