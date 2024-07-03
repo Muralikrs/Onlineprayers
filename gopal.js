@@ -284,7 +284,7 @@ function updateViewportUnits() {
 updateViewportUnits();
 
 // Update dimensions on resize
-window.addEventListener('resize', updateViewportUnits);
+window.addEventListener('resize', updateViewportUnits());
 
 // Handling changes in orientation
 window.addEventListener('orientationchange', updateViewportUnits);
