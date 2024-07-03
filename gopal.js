@@ -261,13 +261,3 @@ function stopAudio() {
     }
 }
 
-function updateViewportDimensions() {
-    document.documentElement.style.setProperty('--viewport-width', `${window.innerWidth}px`);
-    document.documentElement.style.setProperty('--viewport-height', `${window.innerHeight}px`);
-}
-
-// Initial call to set the dimensions
-updateViewportDimensions();
-
-// Update dimensions on resize
-window.addEventListener('resize', updateViewportDimensions);
