@@ -261,25 +261,3 @@ function stopAudio() {
     }
 }
 
-function updateViewportUnits() {
-    const width = window.innerWidth;
-    const height = window.innerHeight;
-
-    // Set CSS variables for the available viewport height and width
-    document.documentElement.style.setProperty('--vh', `${height * 0.01}px`);
-    document.documentElement.style.setProperty('--vw', `${width * 0.01}px`);
-
-    // Detect orientation
-    const orientation = (width > height) ? 'Landscape' : 'Portrait';
-
-    // Update the text content with the current available dimensions (optional)
-    const dimensionsElement = document.getElementById('dimensions');
-    if (dimensionsElement) {
-        dimensionsElement.textContent = 
-            `Orientation: ${orientation}, Width: ${width}px, Height: ${height}px`;
-    }
-}
-
-// Update dimensions on load
-updateViewportUnits();
-
